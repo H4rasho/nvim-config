@@ -11,6 +11,7 @@ set sw=2
 set relativenumber
 set laststatus=2
 set nocompatible
+set ffs=unix,dos
 
 call plug#begin('~/.vim/plugged')
 
@@ -18,7 +19,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
 "Themes
-Plug 'mangeshrex/everblush.vim'
+Plug 'morhetz/gruvbox'
+Plug 'ghifarit53/tokyonight-vim'
 " IDE
 Plug 'easymotion/vim-easymotion'
 Plug 'scrooloose/nerdtree'
@@ -30,6 +32,8 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim' 
 Plug 'Yggdroot/indentLine' 
+Plug 'luochen1990/rainbow'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Status Bar
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
@@ -47,10 +51,17 @@ Plug 'tpope/vim-repeat'
 Plug 'github/copilot.vim'
 call plug#end()
 
-colorscheme everblush
+set termguicolors
+
+let g:tokyonight_style = 'night' " available: night, storm
+let g:tokyonight_enable_italic = 1
+
+colorscheme tokyonight
+
 let g:gruvbox_contrast_dark = "hard"
 let NERDTreeQuitOnOpen = 1
 let g:neoformat_try_node_exe = 1
+let g:rainbow_active = 1
 autocmd BufWritePre *.tsx Neoformat
 au FileType tsx let b:coc_root_patterns = ['.git', '.env', 'tailwind.config.js', 'tailwind.config.cjs']
 
@@ -69,4 +80,6 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+noremap <leader>tv :botright vnew <Bar> :terminal<cr>
+noremap <leader>th :botright new <Bar> :terminal<cr>
 
